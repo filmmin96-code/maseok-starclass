@@ -30,6 +30,11 @@ const handleSubmit = async (e: React.SyntheticEvent) => {
 
       const result = await response.json();
       if (result.success) {
+        // 메타 픽셀 상담 신청 추적 코드 시작
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
+
         alert('상담 신청이 완료되었습니다. 조속히 연락드리겠습니다!');
         setFormData({ name: '', phone: '', type: '59A', agree: false });
       }
